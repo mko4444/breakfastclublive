@@ -128,6 +128,7 @@ class App extends Component {
           <span className="two">
             Welcome to Breakfast Club. What is it, you ask? Sign up via the form below and we’ll match you with a group of 4-5 peers
             for some great conversation. We’ll give you a prompt for the discussion based on everyone's interests and a meeting time that works for everyone.
+            Then, we'll connect the group over email so you can find a place to meet.
           </span>
         </div>
         <div style={{height: 25}} />
@@ -153,7 +154,7 @@ class App extends Component {
               "Board Games", "Transportation", "Urban Design + Cities", "Human Rights", "Design",
               "Energy", "Electronic Music", "Constructing new languages", "Ancient Civilizations",
               "Socialism vs. Capitalism", "Artificial intelligence", "Architecting a city from scratch",
-              "Hardware & Manufacturing"].map((choice, index) =>
+              "Hardware & Manufacturing", "Suggest another topic"].map((choice, index) =>
                 <div key={index} className="multiplechoice-choices-choice border5 anim" onClick={(e) =>
                   e.target.classList.contains("purple")
                     ? this.removeTopic(e, choice)
