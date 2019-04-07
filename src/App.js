@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Airtable from 'airtable';
+const base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base(process.env.REACT_APP_AIRTABLE_BASE);
 
 class App extends Component {
   constructor(props) {
@@ -8,13 +10,22 @@ class App extends Component {
       firstName: "",
       lastName: "",
       twitter: "",
-      linkedIn: "",
+      linkedin: "",
       topics: [],
       times: [],
       city: "",
       submitted: 'not submitted',
       error: false
     }
+  }
+
+  createSignUp = (first_name, last_name, twitter, linkedin, city, topics, times) => {
+    this.setState({error: "", submitted: "submitted"})
+
+    base('Sign Ups').create({first_name, last_name, twitter, linkedin, city, topics, times}, function(err, record) {
+      if (err) { console.error(err); return; }
+      console.log(record.getId());
+    }); 
   }
 
   valueChange(state, value) {
@@ -81,7 +92,6 @@ class App extends Component {
     )
   }
   attemptSubmit() {
-    console.log(this.state.city)
     this.state.firstName
       ? document.getElementById('firstName').classList.remove('redletters')
       : document.getElementById('firstName').classList.add('redletters')
@@ -106,7 +116,15 @@ class App extends Component {
 
     !this.state.firstName || !this.state.lastName || !this.state.twitter || !this.state.linkedin || this.state.topics.length === 0 || this.state.times.length === 0 || !this.state.city
       ? this.setState({error: "Please answer every question"})
-      : this.setState({error: "", submitted: "submitted"})
+      : this.createSignUp(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.twitter,
+        this.state.linkedin,
+        this.state.city,
+        this.state.topics,
+        this.state.times
+      )
 
   }
   render() {
@@ -172,9 +190,9 @@ class App extends Component {
           <div style={{height: 10}} />
           {
             [
-              { "tag": "Thursday, April 11", "times": ["5pm"]},
-              { "tag": "Saturday, April 13", "times": ["3pm", "4pm", "5pm"]},
-              { "tag": "Sunday, April 14", "times": ["3pm", "4pm"]},
+              { "tag": "Thursday, April 11", "times": ["Thursday, April 11, 5pm"]},
+              { "tag": "Saturday, April 13", "times": ["Saturday, April 13, 3pm", "Saturday, April 13, 4pm", "Saturday, April 13, 5pm"]},
+              { "tag": "Sunday, April 14", "times": ["Sunday, April 14, 3pm", "Sunday, April 14, 4pm"]},
             ].map((day, index) =>
               <div key={index} className="multiplechoice-choices">
                 <span className="multiplechoice-choices-tag">{day.tag}</span>
