@@ -26,7 +26,7 @@ class App extends Component {
     base('Sign Ups').create({first_name, last_name, twitter, linkedin, city, topics, times}, function(err, record) {
       if (err) { console.error(err); return; }
       console.log(record.getId());
-    }); 
+    });
   }
 
   valueChange(state, value) {
@@ -174,7 +174,7 @@ class App extends Component {
           <div className="multiplechoice-choices">
             {
               ["Future of work", "Education", "Space Travel + Mars Colonization", "Transportation",
-              "Board Games", "Transportation", "Urban Design + Cities", "Human Rights", "Design",
+              "Board Games", "Urban Design + Cities", "Human Rights", "Design",
               "Energy", "Electronic Music", "Constructing new languages", "Ancient Civilizations",
               "Socialism vs. Capitalism", "Artificial intelligence", "Architecting a city from scratch",
               "Hardware & Manufacturing", "Suggest another topic"].map((choice, index) =>
@@ -195,9 +195,9 @@ class App extends Component {
           <div style={{height: 10}} />
           {
             [
-              { "tag": "Thursday, April 11", "times": ["Thursday, April 11, 5pm"]},
-              { "tag": "Saturday, April 13", "times": ["Saturday, April 13, 3pm", "Saturday, April 13, 4pm", "Saturday, April 13, 5pm"]},
-              { "tag": "Sunday, April 14", "times": ["Sunday, April 14, 3pm", "Sunday, April 14, 4pm"]},
+              { "tag": "Thursday", "times": ["Thursday, April 11, 5pm"]},
+              { "tag": "Saturday", "times": ["Saturday, April 13, 3pm", "Saturday, April 13, 4pm", "Saturday, April 13, 5pm"]},
+              { "tag": "Sunday", "times": ["Sunday, April 14, 3pm", "Sunday, April 14, 4pm"]},
             ].map((day, index) =>
               <div key={index} className="multiplechoice-choices">
                 <span className="multiplechoice-choices-tag">{day.tag}</span>
