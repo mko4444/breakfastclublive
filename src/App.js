@@ -7,6 +7,7 @@ class App extends Component {
     this.state = {
       firstName: "",
       lastName: "",
+      email: "",
       twitter: "",
       linkedIn: "",
       topics: [],
@@ -88,6 +89,9 @@ class App extends Component {
     this.state.lastName
       ? document.getElementById('lastName').classList.remove('redletters')
       : document.getElementById('lastName').classList.add('redletters')
+    this.state.email
+      ? document.getElementById('email').classList.remove('redletters')
+      : document.getElementById('email').classList.add('redletters')
     this.state.twitter
       ? document.getElementById('twitter').classList.remove('redletters')
       : document.getElementById('twitter').classList.add('redletters')
@@ -104,7 +108,7 @@ class App extends Component {
       ? document.getElementById('city_span').classList.remove('redletters')
       : document.getElementById('city_span').classList.add('redletters')
 
-    !this.state.firstName || !this.state.lastName || !this.state.twitter || !this.state.linkedin || this.state.topics.length === 0 || this.state.times.length === 0 || !this.state.city
+    !this.state.firstName || !this.state.lastName || !this.state.email || !this.state.twitter || !this.state.linkedin || this.state.topics.length === 0 || this.state.times.length === 0 || !this.state.city
       ? this.setState({error: "Please answer every question"})
       : this.setState({error: "", submitted: "submitted"})
 
@@ -136,6 +140,7 @@ class App extends Component {
           [
             {"tag": "First Name", "state": "firstName", "placeholder": "Wayne"},
             {"tag": "Last Name", "state": "lastName", "placeholder": "Tables"},
+            {"tag": "Email", "state": "email", "placeholder": "wtables@gmail.com"},
             {"tag": "Twitter", "state": "twitter", "placeholder": "https://twitter.com/user"},
             {"tag": "LinkedIn", "state": "linkedin", "placeholder": "https://linkedin.com/in/user"},
           ].map((question, index) =>
